@@ -2,7 +2,8 @@ import { createContext, PropsWithChildren, useState } from 'react';
 
 export const RouterContext = createContext({
     path: location.pathname,
-    navigate: (path: string) => {}
+    //@ts-expect-error placeholder function here
+    navigate: (path: string) => {} //eslint-disable-line
 })
 
 export default function RouterProvider( props: PropsWithChildren) {

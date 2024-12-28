@@ -1,5 +1,5 @@
-import { AnchorHTMLAttributes, Component, createContext, FunctionComponent, HTMLAttributes, KeyboardEvent, PropsWithChildren, useCallback, useContext, useEffect, useMemo } from 'react'
-import RouterProvider, { RouterContext } from './RouterContext'
+import { AnchorHTMLAttributes, FunctionComponent, KeyboardEvent, PropsWithChildren, useCallback, useContext, useEffect, useMemo } from 'react'
+import { RouterContext } from './RouterContext'
 
 
 type Route = {
@@ -22,9 +22,9 @@ const useRouter = () => {
 type LinkProps = AnchorHTMLAttributes<HTMLAnchorElement>;
 
 const keyListener = (keys: string[] | string, listener: () => void) => {
-    let _keys = Array.isArray(keys) ? keys : [keys];
+    const _keys = Array.isArray(keys) ? keys : [keys];
     return (e: KeyboardEvent) => {
-        if(keys.includes(e.key)) {
+        if(_keys.includes(e.key)) {
             listener();
         }
     }

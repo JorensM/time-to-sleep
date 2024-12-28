@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 export class MyEvents {
 
     events: Record<string, Record<string, ((...args: any[]) => void)>> = {};
