@@ -86,10 +86,7 @@ export default function Router({ routes }: PropsWithChildren<RouterProps>) {
 
     const { path, navigate} = useRouter();
 
-    console.log(path);
-
     const currentRoute = useMemo(() => {
-        console.log('path:', path);
         return routes.find(route => pathsIncludePath(route.path, path));
     }, [path]);
 

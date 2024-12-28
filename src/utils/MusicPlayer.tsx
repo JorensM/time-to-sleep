@@ -1,6 +1,10 @@
 import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { MyEvents } from './MyEvents';
 
+const randRange = (max: number) => {
+    return Math.floor(Math.random() * max);
+}
+
 export class MusicPlayer {
 
     queue = [];
@@ -8,6 +12,7 @@ export class MusicPlayer {
     playing = false;
 
     repeat = true;
+    shuffle = false;
 
     events = new MyEvents([
         'state-change'
@@ -15,23 +20,37 @@ export class MusicPlayer {
 
     songs: HTMLAudioElement[] = [];
 
-    constructor(files: string[]) {
+    constructor(files: string[], options?: {
+        shuffle?: boolean
+    }) {
+        this.shuffle = options?.shuffle || this.shuffle;
         this.songs = files.map(file => new Audio(file));
         this.songs.forEach(song => {
             song.volume = 0.2
             song.addEventListener('ended', this.onEnded);
         });
+        if(this.shuffle) {
+            this.currentlyPlaying = this.getRandomSongIndex();
+        }
+    }
+
+    getRandomSongIndex() {
+        return randRange(this.songs.length);
     }
 
     playNextSong() {
-        const nextIndex = this.currentlyPlaying + 1;
-        const actualNextIndex = nextIndex <= this.songs.length ? nextIndex : 0;
+        let actualNextIndex;
+        if(this.shuffle) {
+            actualNextIndex = this.getRandomSongIndex();
+        } else {
+            const nextIndex = this.currentlyPlaying + 1;
+            actualNextIndex = nextIndex <= this.songs.length ? nextIndex : 0;
+        }
         this.playSong(actualNextIndex);
     }
 
     pause() {
         this.playing = false;
-        console.log('pausing');
         this.songs[this.currentlyPlaying].pause();
         this.events.callEvent('state-change', 'paused');
     }
@@ -59,7 +78,7 @@ export class MusicPlayer {
 // Credits: 
 // https://pixabay.com/music/modern-classical-peaceful-piano-background-music-218762/
 // https://pixabay.com/music/relaxing-piano-music-248868/
-const musicPlayer = new MusicPlayer(['./music/piano1.mp3', './music/piano2.mp3']);
+const musicPlayer = new MusicPlayer(['./music/piano1.mp3', './music/piano2.mp3'], { shuffle: true });
 
 const MusicPlayerContext = createContext(musicPlayer);
 

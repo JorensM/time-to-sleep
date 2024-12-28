@@ -16,8 +16,6 @@ export class MyEvents {
     }
 
     callEvent(id: string, ...args: any[]) {
-        console.log(id);
-        console.log(this.events);
         Object.values(this.events[id]).forEach(cb => {
             cb(...args);
         })

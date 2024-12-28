@@ -34,7 +34,6 @@ export default function AffirmationsPage() {
 
     const renderAffirmation = () => {
         const newAffirmation = getRandomAffirmation();
-        console.log(newAffirmation);
         setAffirmation(getRandomAffirmation());
     }
 
