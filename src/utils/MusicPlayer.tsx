@@ -21,9 +21,11 @@ export class MusicPlayer {
     songs: HTMLAudioElement[] = [];
 
     constructor(files: string[], options?: {
-        shuffle?: boolean
+        shuffle?: boolean,
+        repeat?: boolean
     }) {
         this.shuffle = options?.shuffle || this.shuffle;
+        this.repeat = options?.repeat || this.repeat;
         this.songs = files.map(file => new Audio(file));
         this.songs.forEach(song => {
             song.volume = 0.2
@@ -75,10 +77,7 @@ export class MusicPlayer {
 };
 
 
-// Credits: 
-// https://pixabay.com/music/modern-classical-peaceful-piano-background-music-218762/
-// https://pixabay.com/music/relaxing-piano-music-248868/
-const musicPlayer = new MusicPlayer(['./music/piano1.mp3', './music/piano2.mp3'], { shuffle: true });
+const musicPlayer = new MusicPlayer(['./music/piano1.mp3', './music/piano2.mp3'], { shuffle: true, repeat: true });
 
 const MusicPlayerContext = createContext(musicPlayer);
 
