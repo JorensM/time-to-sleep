@@ -8,7 +8,10 @@ const affirmations = [
     "I am worthy of rest and relaxation.",
     "I let go of all tension in my body.",
     "I am ready to sleep deeply and peacefully.",
-    "I trust in the process of life."
+    "I trust in the process of life.",
+    "Peace, calm",
+    "Zzz...",
+    "Cosy dreams",
 ];
 
 export default affirmations;
