@@ -1,4 +1,4 @@
-import { createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { ComponentState, createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { MyEvents } from './MyEvents';
 
 const randRange = (max: number) => {
@@ -8,11 +8,15 @@ const randRange = (max: number) => {
 export class MusicPlayer {
 
     queue = [];
-    currentlyPlaying = 0;
+    currentlyPlaying: number | null = null;
     playing = false;
 
     repeat = true;
     shuffle = false;
+
+    volume = 0.2;
+
+    name = 'Music Player'
 
     events = new MyEvents([
         'state-change'
@@ -23,27 +27,35 @@ export class MusicPlayer {
     constructor(files: string[], options?: {
         shuffle?: boolean,
         repeat?: boolean
+        name?: string,
+        volume?: number
     }) {
+        this.volume = options?.volume || this.volume;
+        this.name = options?.name || this.name;
         this.shuffle = options?.shuffle || this.shuffle;
         this.repeat = options?.repeat || this.repeat;
         this.songs = files.map(file => new Audio(file));
         this.songs.forEach(song => {
-            song.volume = 0.2
+            song.volume = this.volume;
             song.addEventListener('ended', this.onEnded);
         });
         if(this.shuffle) {
             this.currentlyPlaying = this.getRandomSongIndex();
+        } else if (this.songs.length) {
+            this.currentlyPlaying = 0;
         }
     }
 
     getRandomSongIndex() {
+        if(!this.songs.length) return null;
         return randRange(this.songs.length);
     }
 
     playNextSong() {
+        if(this.currentlyPlaying === null) return;
         let actualNextIndex;
         if(this.shuffle) {
-            actualNextIndex = this.getRandomSongIndex();
+            actualNextIndex = this.getRandomSongIndex()!;
         } else {
             const nextIndex = this.currentlyPlaying + 1;
             actualNextIndex = nextIndex <= this.songs.length ? nextIndex : 0;
@@ -52,12 +64,14 @@ export class MusicPlayer {
     }
 
     pause() {
+        if(this.currentlyPlaying === null) return;
         this.playing = false;
         this.songs[this.currentlyPlaying].pause();
         this.events.callEvent('state-change', 'paused');
     }
 
     play() {
+        if(this.currentlyPlaying === null) return;
         this.playing = true;
         this.songs[this.currentlyPlaying].play();
         this.events.callEvent('state-change', 'playing');
@@ -77,33 +91,53 @@ export class MusicPlayer {
 };
 
 
-const musicPlayer = new MusicPlayer(['./music/piano1.mp3', './music/piano2.mp3'], { shuffle: true, repeat: true });
+// const musicPlayer = new MusicPlayer(['./music/piano1.mp3', './music/piano2.mp3'], { shuffle: true, repeat: true });
 
-const MusicPlayerContext = createContext(musicPlayer);
+const musicPlayers = {
+    'wind': new MusicPlayer(['./sound/wind1.mp3'], { shuffle: true, repeat: true, name: 'Wind', volume: 0.1 }),
+    'rain': new MusicPlayer(['./sound/rain1.mp3'], { shuffle: true, repeat: true, name: 'Rain', volume: 0.05 }),
+    'flowingWater': new MusicPlayer(['./sound/flowingWater1.mp3'], { shuffle: true, repeat: true, name: 'Flowing Water', volume: 0.07 }),
+    'birds': new MusicPlayer(['./sound/birds1.mp3'], { shuffle: true, repeat: true, name: 'Birds', volume: 0.4 }),
+    'piano': new MusicPlayer(['./sound/piano1.mp3', './sound/piano2.mp3'], { shuffle: true, repeat: true, name: 'Piano', volume: 0.08 })
+}
 
-export const useMusicPlayer = () => {
-    const context = useContext(MusicPlayerContext);
+const MusicPlayersContext = createContext(musicPlayers);
 
-    const [playing, setPlaying] = useState<boolean>(context.playing);
+export const useMusicPlayers = () => {
+    const context = useContext(MusicPlayersContext);
+
+    const playerStateIsPlaying: Record<keyof typeof musicPlayers | string, ComponentState> = {}
+
+    for(const playerEntry of Object.entries(musicPlayers)) {
+        const player = playerEntry[1];
+        const key = playerEntry[0];
+        playerStateIsPlaying[key] = useState<boolean>(player.playing);
+    }
 
     useEffect(() => {
-        context.events.on('state-change', (state: 'playing' | 'paused') => {
-            setPlaying(state === 'playing');
-        })
+        Object.entries(context).forEach(([key, player]) => {
+            player.events.on('state-change', (state: 'playing' | 'paused') => {
+                playerStateIsPlaying[key][1](state === 'playing');
+            })
+        });
     }, []);
 
+    const isPlaying = (key: string) => {
+        return playerStateIsPlaying[key][0];
+    }
+
     return {
-        player: context,
-        playing
+        players: context,
+        isPlaying
     };
 }
 
 export default function MusicPlayerProvider( props: PropsWithChildren ) {
     return (
-        <MusicPlayerContext.Provider
-            value={musicPlayer}
+        <MusicPlayersContext.Provider
+            value={musicPlayers}
         >
             {props.children}
-        </MusicPlayerContext.Provider>
+        </MusicPlayersContext.Provider>
     );
 };

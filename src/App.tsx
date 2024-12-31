@@ -1,18 +1,18 @@
 import Router, { Link } from './router/router'
 import { routes } from './pages'
-import { useMusicPlayer } from './utils/MusicPlayer'
+// import { useMusicPlayer } from './utils/MusicPlayer'
 
 function App() {
 
-  const { player, playing } = useMusicPlayer();
+  // const { player, playing } = useMusicPlayer();
 
-    const toggleMusic = () => {
-        if(playing) {
-            player.pause();
-        } else {
-            player.play();
-        }
-    }
+  //   const toggleMusic = () => {
+  //       if(playing) {
+  //           player.pause();
+  //       } else {
+  //           player.play();
+  //       }
+  //   }
 
   return (
       <div className='h-full flex flex-col'>
@@ -22,9 +22,9 @@ function App() {
               Time To Sleep
             </Link>
           </h1>
-          <button onClick={toggleMusic}>
+          {/* <button onClick={toggleMusic}>
               Music {playing ? 'On' : 'Off'}
-          </button>
+          </button> */}
         </header>
         <main className='p-4 flex-grow box-border'>
           <Router
