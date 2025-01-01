@@ -2,14 +2,19 @@
 
 export const wakeLockSupported = 'wakeLock' in navigator;
 
+let wakeLock: WakeLockSentinel | null = null;
+
 export async function requestEnableWakeLock() {
     if(wakeLockSupported) {
-        await navigator.wakeLock.request("screen");
+        wakeLock = await navigator.wakeLock.request("screen");
     } else {
         throw new Error('Wake Lock not supported');
     }
 }
 
-export function disableWakeLock() {
-
+export async function disableWakeLock() {
+    if(wakeLock) {
+        await wakeLock.release();
+        wakeLock = null;
+    }
 }
