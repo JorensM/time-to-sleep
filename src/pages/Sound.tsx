@@ -10,16 +10,12 @@ type SoundButtonProps = {
 }
 
 function SoundButton( { player, isPlaying, label }: SoundButtonProps) {
-
-    const toast = useToast();
-
     const toggleSound = () => {
-        toast.displayToast('Hi');
-        // if(isPlaying) {
-        //     player.pause()
-        // } else {
-        //     player.play()
-        // }
+        if(isPlaying) {
+            player.pause()
+        } else {
+            player.play()
+        }
     }
 
     return (
