@@ -81,13 +81,14 @@ export default function ToastProvider( props: PropsWithChildren ) {
         >
             {props.children}
             {/* Toasts */}
-            <ul className='w-dvw h-dvh absolute overflow-hidden top-0 left-0 flex flex-col items-end justify-end pointer-events-none p-8 gap-2'>
+            <ul className='w-dvw h-dvh fixed overflow-hidden top-0 left-0 flex flex-col items-end justify-end pointer-events-none p-8 gap-2'>
                 {toasts.map(toast => (
                     <li key={toast.id} className={clsx(
                         'border p-2 min-w-24 text-right rounded-md transition-transfor duration-500',
                         toast.variant === 'neutral' && 'bg-neutral-400 border-neutral-700 text-black',
                         toast.variant === 'error' && 'bg-red-400 border-red-700 text-red-700',
-                        toast.state === 'visible' ? 'translate-x-0' : 'translate-x-[200px]'
+                        toast.variant === 'warn' && 'bg-orange-400 border-orange-700 text-orange-700',
+                        toast.state === 'visible' ? 'translate-x-0' : 'translate-x-[calc(100%_+_50px)]'
                     )}>
                         {toast.message}
                     </li>

@@ -1,6 +1,6 @@
 
 
-export const wakeLockSupported = 'wakeLock' in navigator;
+export const wakeLockSupported = 'wakeLock' in navigator && import.meta.env.PROD;
 
 let wakeLock: WakeLockSentinel | null = null;
 
