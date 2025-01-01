@@ -94,9 +94,9 @@ export class MusicPlayer {
 // const musicPlayer = new MusicPlayer(['./music/piano1.mp3', './music/piano2.mp3'], { shuffle: true, repeat: true });
 
 const musicPlayers = {
-    'wind': new MusicPlayer(['./sound/wind1.mp3'], { shuffle: true, repeat: true, name: 'Wind', volume: 0.1 }),
-    'rain': new MusicPlayer(['./sound/rain1.mp3'], { shuffle: true, repeat: true, name: 'Rain', volume: 0.05 }),
-    'flowingWater': new MusicPlayer(['./sound/flowingWater1.mp3'], { shuffle: true, repeat: true, name: 'Flowing Water', volume: 0.07 }),
+    'wind': new MusicPlayer(['./sound/wind1.mp3'], { shuffle: true, repeat: true, name: 'Wind', volume: 0.2 }),
+    'rain': new MusicPlayer(['./sound/rain1.mp3'], { shuffle: true, repeat: true, name: 'Rain', volume: 0.04 }),
+    'flowingWater': new MusicPlayer(['./sound/flowingWater1.mp3'], { shuffle: true, repeat: true, name: 'Flowing Water', volume: 0.05 }),
     'birds': new MusicPlayer(['./sound/birds1.mp3'], { shuffle: true, repeat: true, name: 'Birds', volume: 0.4 }),
     'piano': new MusicPlayer(['./sound/piano1.mp3', './sound/piano2.mp3'], { shuffle: true, repeat: true, name: 'Piano', volume: 0.08 }),
     // 'boink': new MusicPlayer(['./sound/boink.mp3'], { shuffle: true, repeat: true, name: 'Boink', volume: 0.08 })

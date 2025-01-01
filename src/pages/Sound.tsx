@@ -1,3 +1,4 @@
+import useToast from '../hooks/useToast';
 import { MusicPlayer, useMusicPlayers } from '../utils/MusicPlayer';
 
 export const path = '/sound';
@@ -10,12 +11,15 @@ type SoundButtonProps = {
 
 function SoundButton( { player, isPlaying, label }: SoundButtonProps) {
 
+    const toast = useToast();
+
     const toggleSound = () => {
-        if(isPlaying) {
-            player.pause()
-        } else {
-            player.play()
-        }
+        toast.displayToast('Hi');
+        // if(isPlaying) {
+        //     player.pause()
+        // } else {
+        //     player.play()
+        // }
     }
 
     return (

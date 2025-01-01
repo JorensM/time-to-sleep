@@ -4,13 +4,19 @@ import App from './App.tsx'
 import './index.css'
 import RouterProvider from './router/RouterContext.tsx'
 import MusicPlayerProvider from './utils/MusicPlayer.tsx'
+import ErrorBoundary from './components/ErrorBoundary.tsx'
+import ToastProvider from './components/ToastProvider.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <MusicPlayerProvider>
-      <RouterProvider>
-        <App />
-      </RouterProvider>
-    </MusicPlayerProvider>
+    <ErrorBoundary>
+      <ToastProvider>
+        <MusicPlayerProvider>
+          <RouterProvider>
+            <App />
+          </RouterProvider>
+        </MusicPlayerProvider>
+      </ToastProvider>
+    </ErrorBoundary>
   </StrictMode>,
 )
