@@ -1,11 +1,13 @@
-import { ComponentState, createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
+import { ComponentState, createContext, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
 import { MyEvents } from './MyEvents';
+import useSettings from '../hooks/useSettings';
 
 const randRange = (max: number) => {
     return Math.floor(Math.random() * max);
 }
 
 export class MusicPlayer {
+
 
     queue = [];
     currentlyPlaying: number | null = null;
@@ -134,6 +136,23 @@ export const useMusicPlayers = () => {
 }
 
 export default function MusicPlayerProvider( props: PropsWithChildren ) {
+
+    const { settings, updateSettings } = useSettings();
+    const players = useMusicPlayers();
+
+    useEffect(() => {
+        if(settings.retainMusic) {
+            const listener = () => {
+                settings.soundsPlaying.forEach(key => {
+                    players.players[key as keyof typeof players.players]?.play();
+                })
+                document.removeEventListener('click', listener);
+            }
+            document.addEventListener('click', listener);
+            
+        }
+    }, [])
+
     return (
         <MusicPlayersContext.Provider
             value={musicPlayers}

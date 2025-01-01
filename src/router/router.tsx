@@ -1,5 +1,6 @@
 import { AnchorHTMLAttributes, FunctionComponent, KeyboardEvent, PropsWithChildren, useCallback, useContext, useEffect, useMemo } from 'react'
 import { RouterContext } from './RouterContext'
+import useSettings from '../hooks/useSettings'
 
 
 type Route = {
