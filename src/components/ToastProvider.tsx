@@ -86,6 +86,7 @@ export default function ToastProvider( props: PropsWithChildren ) {
                     <li key={toast.id} className={clsx(
                         'border p-2 min-w-24 text-right rounded-md transition-transfor duration-500',
                         toast.variant === 'neutral' && 'bg-neutral-400 border-neutral-700 text-black',
+                        toast.variant === 'error' && 'bg-red-400 border-red-700 text-red-700',
                         toast.state === 'visible' ? 'translate-x-0' : 'translate-x-[200px]'
                     )}>
                         {toast.message}
