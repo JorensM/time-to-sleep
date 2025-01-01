@@ -22,6 +22,9 @@ function App() {
               Time To Sleep
             </Link>
           </h1>
+          <Link href='/settings' className='text-neutral-400 focus-within:text-neutral-400'>
+            Settings
+          </Link>
           {/* <button onClick={toggleMusic}>
               Music {playing ? 'On' : 'Off'}
           </button> */}

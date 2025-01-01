@@ -46,6 +46,7 @@ export function Link( { href, ...props }: LinkProps) {
             tabIndex={0}
             onClick={onClick}
             onKeyDown={keyListener('Enter', onClick)}
+            {...props}
         >
             {props.children}
         </a>
