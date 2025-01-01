@@ -28,7 +28,7 @@ export default function ToastProvider( props: PropsWithChildren ) {
     }, [toasts]);
 
     const displayToast = (message: string, timeout = 2000, variant: 'error' | 'success' | 'warn' | 'neutral' = 'neutral') => {
-        let id = maxID++;
+        const id = maxID++;
         setToasts((prevToasts) => [
             ...prevToasts,
             {

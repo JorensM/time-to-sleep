@@ -23,7 +23,8 @@ export default function SettingsPage() {
             }
             setWakeLockEnabled(!wakeLockEnabled);
         } catch (e) {
-            toast.displayToast(e.message, 2000, 'warn');
+            const _e = e as Error;
+            toast.displayToast(_e.message, 2000, 'warn');
         }
     }
 
