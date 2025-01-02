@@ -25,9 +25,6 @@ function App() {
           <Link href='/settings' className='text-neutral-400 focus-within:text-neutral-400'>
             Settings
           </Link>
-          {/* <button onClick={toggleMusic}>
-              Music {playing ? 'On' : 'Off'}
-          </button> */}
         </header>
         <main className='p-4 flex-grow box-border'>
           <Router
