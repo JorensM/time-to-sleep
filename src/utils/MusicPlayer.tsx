@@ -1,4 +1,4 @@
-import { ComponentState, createContext, PropsWithChildren, useCallback, useContext, useEffect, useState } from 'react';
+import { ComponentState, createContext, PropsWithChildren, useContext, useEffect, useState } from 'react';
 import { MyEvents } from './MyEvents';
 import useSettings from '../hooks/useSettings';
 
@@ -114,6 +114,7 @@ export const useMusicPlayers = () => {
     for(const playerEntry of Object.entries(musicPlayers)) {
         const player = playerEntry[1];
         const key = playerEntry[0];
+        // eslint-disable-next-line
         playerStateIsPlaying[key] = useState<boolean>(player.playing);
     }
 
@@ -137,7 +138,7 @@ export const useMusicPlayers = () => {
 
 export default function MusicPlayerProvider( props: PropsWithChildren ) {
 
-    const { settings, updateSettings } = useSettings();
+    const { settings } = useSettings();
     const players = useMusicPlayers();
 
     useEffect(() => {

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { MusicPlayer, useMusicPlayers } from '../utils/MusicPlayer';
 import useSettings from '../hooks/useSettings';
 

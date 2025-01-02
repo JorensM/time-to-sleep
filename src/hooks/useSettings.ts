@@ -1,4 +1,3 @@
-import { useContext, useEffect, useRef } from 'react';
 import { create } from 'zustand';
 
 export type Settings = {

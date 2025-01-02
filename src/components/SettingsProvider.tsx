@@ -1,10 +1,5 @@
 // import { createContext, Dispatch, PropsWithChildren, SetStateAction, useCallback, useEffect, useState } from 'react'
 
-// export type Settings = {
-//     wakeLock: boolean,
-//     retainMusic: boolean,
-//     soundsPlaying: string[]
-// }
 
 
 

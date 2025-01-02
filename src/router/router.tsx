@@ -1,6 +1,5 @@
 import { AnchorHTMLAttributes, FunctionComponent, KeyboardEvent, PropsWithChildren, useCallback, useContext, useEffect, useMemo } from 'react'
 import { RouterContext } from './RouterContext'
-import useSettings from '../hooks/useSettings'
 
 
 type Route = {
@@ -47,6 +46,7 @@ export function Link( { href, ...props }: LinkProps) {
             tabIndex={0}
             onClick={onClick}
             onKeyDown={keyListener('Enter', onClick)}
+            href={href}
             {...props}
         >
             {props.children}

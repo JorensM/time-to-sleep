@@ -12,6 +12,9 @@ export default function HomePage() {
             <li>
                 <Link href='/sound' className='w-full'>Sound</Link>
             </li>
+            <li>
+                <Link href='/breathing' className='w-full'>Breathing exercise</Link>
+            </li>
         </ul>
     )
 }
