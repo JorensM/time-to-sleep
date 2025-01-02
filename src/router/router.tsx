@@ -1,4 +1,14 @@
-import { AnchorHTMLAttributes, FunctionComponent, KeyboardEvent, PropsWithChildren, useCallback, useContext, useEffect, useMemo } from 'react'
+import { 
+    AnchorHTMLAttributes, 
+    FunctionComponent, 
+    KeyboardEvent, 
+    PropsWithChildren, 
+    useCallback, 
+    useContext, 
+    useEffect, 
+    useMemo ,
+    MouseEvent
+} from 'react'
 import { RouterContext } from './RouterContext'
 
 
@@ -34,7 +44,12 @@ export function Link( { href, ...props }: LinkProps) {
 
     const router = useRouter();
 
-    const onClick = () => {
+    const onClick = (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        navigate(href);
+    }
+
+    const navigate = (href?: string) => {
         if(href) {
             history.pushState(null, '', location.origin + href)
             router.navigate(href);
@@ -45,7 +60,7 @@ export function Link( { href, ...props }: LinkProps) {
         <a
             tabIndex={0}
             onClick={onClick}
-            onKeyDown={keyListener('Enter', onClick)}
+            onKeyDown={keyListener('Enter', () => navigate(href))}
             href={href}
             {...props}
         >
