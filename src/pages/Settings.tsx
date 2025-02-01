@@ -1,8 +1,9 @@
 import { disableWakeLock, requestEnableWakeLock } from '../utils/wakeLock';
 import useToast from '../hooks/useToast';
 import useSettings from '../hooks/useSettings';
+import { routes } from '../constants';
 
-export const path = '/settings';
+export const path = routes.app.settings.url;
 
 
 export default function SettingsPage() {

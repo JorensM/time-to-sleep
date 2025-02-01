@@ -1,7 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import onKeyPress from '../utils/onKeyPress';
+import { routes } from '../constants';
 
-export const path = '/breathing';
+export const path = routes.app.breathing.url;
 
 export default function BreathingExercise() {
     const [currentState, setCurrentState] = useState<'in' | 'out' | 'initial'>('initial');

@@ -70,6 +70,7 @@ describe('BreathingExercise', () => {
     })
 
     it(`Should start with 'breathe in' with each adjustment`, async () => {
+        vi.useFakeTimers();
         const { getByText } = render(<BreathingExercise />);
 
         const initialText = await getByText('Tap repeatedly to set a comfortable breathing rhythm');
@@ -80,8 +81,9 @@ describe('BreathingExercise', () => {
         await initialText.click();
         await expect.element(breatheInText).toBeVisible();
 
-        await sleep(2000);
+        // vi.advanceTimersByTime(1999);
         await breatheInText.click();
+        
         await expect.element(breatheOutText).toBeVisible();
 
         await vi.waitFor(async () => {

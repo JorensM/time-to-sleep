@@ -1,7 +1,8 @@
 import { MusicPlayer, useMusicPlayers } from '../utils/MusicPlayer';
 import useSettings from '../hooks/useSettings';
+import { routes } from '../constants';
 
-export const path = '/sound';
+export const path = routes.app.sound.url;
 
 type SoundButtonProps = {
     label: string,

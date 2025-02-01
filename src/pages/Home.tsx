@@ -1,20 +1,23 @@
+import { routes } from '../constants';
 import { Link } from '../router/router';
 
-export const path = '/';
+export const path = routes.home.url;
 
 export default function HomePage() {
 
     return (
-        <ul>
-            <li>
-                <Link href='/affirmations' className='w-full'>Sleep affirmations</Link>
-            </li>
-            <li>
-                <Link href='/sound' className='w-full'>Sound</Link>
-            </li>
-            <li>
-                <Link href='/breathing' className='w-full'>Breathing exercise</Link>
-            </li>
-        </ul>
+        <div>
+            <main>
+                <p>
+                    Time To Sleep is a small application that helps you get into the mood
+                    for sleeping.
+                </p>
+                <Link
+                    href={routes.app.url}
+                >
+                    Help me fall asleep
+                </Link>
+            </main>
+        </div>
     )
 }

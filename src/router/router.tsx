@@ -23,7 +23,7 @@ type RouterProps = {
 
 
 
-const useRouter = () => {
+export const useRouter = () => {
     const context = useContext(RouterContext);
 
     return context;
