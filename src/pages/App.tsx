@@ -8,13 +8,13 @@ export default function AppPage() {
     return (
         <ul>
             <li>
-                <Link href='/affirmations' className='w-full'>Sleep affirmations</Link>
+                <Link href={routes.app.affirmations.url} className='w-full'>Sleep affirmations</Link>
             </li>
             <li>
-                <Link href='/sound' className='w-full'>Sound</Link>
+                <Link href={routes.app.sound.url} className='w-full'>Sound</Link>
             </li>
             <li>
-                <Link href='/breathing' className='w-full'>Breathing exercise</Link>
+                <Link href={routes.app.breathing.url} className='w-full'>Breathing exercise</Link>
             </li>
         </ul>
     )

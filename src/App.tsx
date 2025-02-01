@@ -28,7 +28,7 @@ function App() {
             </Link>
           </h1>
           {router.path !== '/' ?
-            <Link href='/settings' className='text-neutral-400 focus-within:text-neutral-400'>
+            <Link href={routeNames.app.settings.url} className='text-neutral-400 focus-within:text-neutral-400'>
               Settings
             </Link>
           : null }
