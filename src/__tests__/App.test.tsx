@@ -1,23 +1,23 @@
 import { render } from 'vitest-browser-react'
-import HomePage from '../pages/Home'
+import App from '../pages/App';
 
-describe('<HomePage/>', () => {
+describe('<App/>', () => {
     it('Should list out all the links', async () => {
 
-        const { getByText } = render(<HomePage/>);
+        const { getByText } = render(<App/>);
 
         const links = [
             {
                 label: 'Sleep affirmations',
-                href: '/affirmations'
+                href: '/app/affirmations'
             },
             {
                 label: 'Sound',
-                href: '/sound'
+                href: '/app/sound'
             },
             {
                 label: 'Breathing exercise',
-                href: '/breathing'
+                href: '/app/breathing'
             }
         ]
 

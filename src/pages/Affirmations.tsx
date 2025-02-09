@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import getRandomAffirmation from '../utils/getRandomAffirmation';
+import { routes } from '../constants';
 
-export const path = '/affirmations';
+export const path = routes.app.affirmations.url;
 
 export default function AffirmationsPage() {
 
@@ -45,7 +46,7 @@ export default function AffirmationsPage() {
                 className='mt-auto'
                 onClick={renderAffirmation}
             >
-                Get Affirmation
+                Receive Affirmation
             </button>
         </div>
     )
