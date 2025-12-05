@@ -32,7 +32,7 @@ export default function SettingsPage() {
     return (
         <div className='h-full w-full flex flex-col justify-between'>
             <div className='flex flex-col'>
-                <h2>Settings</h2>
+                <h2 className='mb-2'>Settings</h2>
                 <ul className='h-fit flex flex-col gap-2'>
                     <li className='flex gap-1'>
                         <input 
