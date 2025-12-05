@@ -32,7 +32,7 @@ export default function SettingsPage() {
     return (
         <div className='h-full w-full flex flex-col justify-between'>
             <h2>Settings</h2>
-            <ul className='mt-auto h-fit flex flex-col gap-2'>
+            <ul className='h-fit flex flex-col gap-2'>
                 <li className='flex items-center gap-1'>
                     <input 
                         className='mt-0.5'
@@ -46,6 +46,11 @@ export default function SettingsPage() {
                 </li>
                 <li>
                     <button onClick={toggleWakeLockEnabled}>Wake Lock {settings.wakeLock ? 'On' : 'Off'}</button>
+                </li>
+            </ul>
+            <ul className='h-fit flex flex-col gap-2'>
+                <li>
+                    <a href="https://checkout.revolut.com/pay/db94d317-bb0b-4f87-9506-854899b05981"/>Support Development</a>
                 </li>
             </ul>
         </div>
