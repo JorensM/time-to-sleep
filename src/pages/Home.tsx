@@ -7,8 +7,8 @@ export default function HomePage() {
 
     return (
         <div>
-            <main>
-                <h1>Get yourself in the mood for sleep</h1>
+            <main className="flex flex-col gap-2">
+                <h1 className="mb-2">Get yourself in the mood for sleep</h1>
                 <p>
                     Time To Sleep is a small application that helps you get into the mood
                     for sleeping.
