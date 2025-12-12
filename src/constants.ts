@@ -15,6 +15,9 @@ export const routes = {
         },
         sound: {
             url: '/app/sound'
+        },
+        dreamjournal: {
+            url: '/app/dreamjournal'
         }
     }
 }

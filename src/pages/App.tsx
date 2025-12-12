@@ -16,6 +16,9 @@ export default function AppPage() {
             <li>
                 <Link href={routes.app.breathing.url} className='w-full'>Breathing exercise</Link>
             </li>
+            <li>
+                <Link href={routes.app.dreamjournal.url} className='w-full'>Dream Journal</Link>
+            </li>
         </ul>
     )
 }
